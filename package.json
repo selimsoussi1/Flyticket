@@ -1,0 +1,21 @@
+{
+  "name": "flyticket",
+  "version": "1.0.0",
+  "description": "A full-stack flight booking showcase: search real-feeling routes, pick your exact seat on a live aircraft cabin map, and watch a boarding pass build itself in as you move through the flow — right up to a confirmation code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selimsoussi1/Flyticket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/selimsoussi1/Flyticket/issues"
+  },
+  "homepage": "https://github.com/selimsoussi1/Flyticket#readme"
+}
