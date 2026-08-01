@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-app: theme('colors.paper.50');
+  --bg-surface: #FFFFFF;
+  --bg-surface-2: theme('colors.paper.100');
+  --border-hairline: theme('colors.paper.200');
+  --text-primary: #11151F;
+  --text-muted: #5C6479;
+  --accent: theme('colors.beacon.dim');
+  --shadow-card: theme('boxShadow.cardLight');
+}
+
+.dark {
+  --bg-app: theme('colors.ink.950');
+  --bg-surface: theme('colors.ink.900');
+  --bg-surface-2: theme('colors.ink.800');
+  --border-hairline: theme('colors.ink.700');
+  --text-primary: #EEF1F8;
+  --text-muted: #93A0BD;
+  --accent: theme('colors.beacon.DEFAULT');
+  --shadow-card: theme('boxShadow.card');
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: theme('fontFamily.body');
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.font-mono, .tabular-num { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-hairline); border-radius: 8px; }
+
+.surface { background-color: var(--bg-surface); border: 1px solid var(--border-hairline); }
+.surface-2 { background-color: var(--bg-surface-2); }
+.text-muted { color: var(--text-muted); }
+.card-shadow { box-shadow: var(--shadow-card); }
+
+/* Split-flap board character, the visual signature reused for flight codes,
+   times, prices, and the PNR reveal on the confirmation page. */
+.flap-char {
+  perspective: 200px;
+}
+.flap-char .flap-inner {
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+.flap-flip .flap-inner {
+  animation: flap-turn 0.42s ease-in-out;
+}
+@keyframes flap-turn {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  45% { transform: rotateX(-90deg); opacity: 0.3; }
+  55% { transform: rotateX(-90deg); opacity: 0.3; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* Ambient sky gradient behind the hero + seat map cabin, standing in for
+   the view through an aircraft window at altitude. */
+.sky-wash {
+  background: radial-gradient(120% 140% at 15% 0%, rgba(79,195,247,0.18), transparent 55%),
+              radial-gradient(100% 120% at 100% 10%, rgba(255,182,72,0.12), transparent 50%);
+}
+
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.2,0.7,0.3,1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+/* Seat glyph states */
+.seat-btn {
+  transition: transform 0.15s cubic-bezier(0.3,0.7,0.4,1), box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.seat-btn:hover:not(:disabled) { transform: translateY(-2px) scale(1.05); }
+.seat-btn:active:not(:disabled) { transform: translateY(0) scale(0.96); }
